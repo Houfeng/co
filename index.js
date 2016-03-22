@@ -23,11 +23,11 @@ module.exports = co['default'] = co.co = co;
  * @api public
  */
 
-co.wrap = function (fn) {
+co.wrap = function (fn,scope) {
   createPromise.__generatorFunction__ = fn;
   return createPromise;
   function createPromise() {
-    return co.call(this, fn.apply(this, arguments));
+    return co.call(this, fn.apply(scope || this, arguments));
   }
 };
 
